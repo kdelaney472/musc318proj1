@@ -1,22 +1,53 @@
+body {
+  background-color: #c2b280;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+.title{
+  position: absolute;
+  overflow: hidden;
+  border-style: none;
+  border-radius: 0px;
+  width: 100%;
+  background-color: #689e70;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  left: 0px;
+  top: 0px;
+  height:150px;
+}
+
+.title a{
+  text-decoration: none;
+}
+.title a:hover{
+  text-decoration: underline;
+}
+
 .navbar {
   position: absolute;
   overflow: hidden;
   border-style: none;
   border-radius: 0px;
   width: 100%;
-  background-color: #c9c9c9;
+  background-color: #36513a;
   box-sizing: border-box;
   margin: 0px;
+  margin-top: 150px;
   padding: 0px;
   left: 0px;
   top: 0px;
+  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24),
+    0 9px 25px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* Style the links inside the navigation bar */
 .navbar a {
   float: left;
   display: block;
-  color: black;
+  color: rgb(209, 134, 207);
   text-align: center;
   padding: 18px 20px;
   text-decoration: none;
@@ -55,4 +86,44 @@ h1 {
   margin-left: 15px;
   margin-bottom: 35px;
   /*text-shadow: 0px 0px 4px #000000;*/
+}
+
+#content{
+  margin-top: 240px;
+  margin-left: 25px;
+	margin-right: 25px;
+	margin-bottom: 25px;
+}
+
+#intro{
+  font-size:x-large;
+	background-color: #c0c0c0;
+	border-radius: 15px;
+	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+	padding: 40px;
+}
+
+ol#sourceL{
+  line-height: 1.8;
+	background-color: #c0c0c0;
+	border-radius: 15px;
+	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+	padding: 40px;
+  margin:0px 100px 0px 100px;
+  list-style-position: inside;
+}
+ol {
+  margin:0px 0;
+  padding:0;
+  list-style: decimal-leading-zero inside none;
+}
+
+ol li 
+{
+    margin: 0px;
+    padding: 0px;
+    text-indent: -2.2em;
+    margin-left: 3.4em;
 }
