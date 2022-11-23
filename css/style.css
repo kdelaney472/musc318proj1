@@ -104,6 +104,32 @@ h1 {
 	padding: 40px;
 }
 
+.Lpanel{
+  position:absolute;
+  font-size:x-large;
+	background-color: #c0c0c0;
+	border-radius: 15px;
+	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+	padding: 40px;
+  width:635px;
+}
+
+.Rpanel{
+  position: absolute;
+  font-size:x-large;
+	background-color: #c0c0c0;
+	border-radius: 15px;
+	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+	padding: 40px;
+  width:635px;
+  margin-left:750px;
+}
+
+
+
+/* sources page formatting */
 ol#sourceL{
   line-height: 1.8;
 	background-color: #c0c0c0;
@@ -119,7 +145,6 @@ ol {
   padding:0;
   list-style: decimal-leading-zero inside none;
 }
-
 ol li 
 {
     margin: 0px;
