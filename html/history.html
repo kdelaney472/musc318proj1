@@ -8,7 +8,7 @@
     <title>MUSC 318 Project 1</title>
 
     <link rel="stylesheet" href="../css/style.css" />
-
+  </head>
   <body>
     <div class="title">
       <a href="../index.html">
@@ -29,27 +29,142 @@
 
     <div id="content">
       <h1>Similarities:</h1>
-      <p id="intro">Both Trinidad & Tobago and Uganda have been ruled by Britain.<br><span style="padding-left: 30px; font-weight:normal;">(more info on the countries is available in source 1 & 2)</span></p><br>
-      <h1>Differences:</h1>
-      <div class="Lpanel">
-        •	Both Tribago and Uganda have been ruled by Britain (more info on the countries available in source 1 & 2)
-•	Demographics: 
-o	Tribago
-	roughly half of Trinidad’s population today has African roots, other half has Indian roots (source 3)
-	Majority is Christian religion (source 2)
-o	Uganda
-	Uganda is a melting pot of different ethnic groups, with Baganda being the largest demographic (source 
+      <p id="intro">
+        Both Trinidad & Tobago and Uganda have been ruled by Britain.<br>
+        <span style="padding-left: 30px; font-weight:normal;">
+          (more info on the countries is available in source 1 & 2)
+        </span><br>
+        Both are majority Christian.<br>
+        <span style="padding-left: 30px; font-weight:normal;">
+          (more info in pie charts below)
+        </span><br>
+      </p><br>
 
+
+      <h1>Differences:</h1>
+
+      <div class="Lpanel">
+        <h2 >Tribago 
+          <img style="vertical-align:text-top;" src="../tribago-map.png" width="60%">
+        </h2><br>
+        o	Demographics: <br><br>
+        	roughly half of Trinidad’s population today has African roots, other half has Indian roots (source 3)<br>
+        	Majority is Christian religion (source 2)<br>
+
+        <canvas id="pie1" width="600" height="300"></canvas> <!-- canvas is this size to fit both pie charts -->
+        <script>
+          let dataSet1= [ //this holds the contents of the first dataset given in the assignment instructions
+              {name: "Protestant", count: 32.1, color: "pink"}, //we set the name, sample size, and a unique color
+              {name: "Roman Catholic", count: 21.6, color: "lightgreen"},
+              {name: "Hindu", count: 18.2, color: "lightblue"},
+              {name: "Other / No religion", count: 23.2, color: "#a9a9a9"},
+              {name: "Muslim", count: 5, color: "lightyellow"}
+            ];
+          let dataSet2= [ //this holds the contents of the first dataset given in the assignment instructions
+              {name: "Protestant", count: 45.1, color: "pink"}, //we set the name, sample size, and a unique color
+              {name: "Roman Catholic", count: 39.3, color: "lightgreen"},
+              {name: "Other / No religion", count: 1.8, color: "#a9a9a9"},
+              {name: "Muslim", count: 13.7, color: "lightyellow"}
+            ];
+
+          function drawPies(dataSet, centerX, centerY, cx) //this function allows us to pass in any dataset and its coordinates to write them onto the canvas
+          {
+            let total = dataSet.reduce(function(sum, choice) { 
+              return sum + choice.count; //here we sum each of the count values to get the total count of the dataset which is used for the pie chart
+            }, 0);
+      
+            let currentAngle = -0.5 * Math.PI; //we set the current angle to -pi/2 which is the bottom of the circle
+      
+            dataSet.forEach(function(result) { //we iterate through each section of the dataset to draw each into the pie chart
+              let sliceAngle = (result.count / total) * 2 * Math.PI; 
+              //we set a variable, sliceAngle, to be the proportion of the current section's count out of the total: 
+                //for example, if the total is 100, and the count of the current section is 25, then the sliceAngle would be 1/4 (25/100) of the way through the circle, so it would be pi/2
+              cx.beginPath(); //start drawing 
+              cx.arc(centerX, centerY, 100, currentAngle, currentAngle + sliceAngle); //we draw the arc from the current angle (starts at -pi/2) to the current angle + the sliceAngle, so it draws the arc for the specific section
+      
+              let middleAngle = currentAngle + 0.5 * sliceAngle; //we set middleAngle variable to be halfway btwn the current and the sliceAngle
+              let textX = Math.cos(middleAngle) * 120 + centerX; //we then get the x and y position of this mid-angle 
+              let textY = Math.sin(middleAngle) * 120 + centerY; //  using cos and sin functions. This will be the location of the section label text
+              cx.textBaseLine = "middle"; //setting the text's baseline to be middle, so that it isn't higher or lower than the coordinates we decided on (it is directly on it)
+              if (Math.cos(middleAngle) > 0) //if the x coordinate is positive (meaning the section is on the right side of the pie) 
+                cx.textAlign = "left";     //   we align the text left
+              else //if the x coordinate of the section is negative and hence on the left side of the chart,
+                cx.textAlign = "right"; //      we align right
+              cx.font = "15px sans-serif"; //setting font to this readable size and style
+              cx.fillStyle = "black"; //text color is black
+              cx.fillText(result.name, textX, textY); //here we put the text on the canvas using the coordinates we got earlier from cos/sin and get the name of the section from the result.name
+      
+              currentAngle += sliceAngle; //shifts the current angle to be at the sliceAngle, so that when we iterate to the next section, we start from the end of the previous section instead of always starting from the -pi/2 angle
+              cx.lineTo(centerX, centerY); //this closes the section by drawing a line from the end of the arc that we left off at back to the center of the pie chart
+              cx.fillStyle = result.color; //sets to the color we decided on in the dataSet1 or dataSet2 color property
+              cx.fill(); //fill the section to be this color
+            });
+          }
+          let cx = document.getElementById("pie1").getContext("2d"); //setting cx to be the canvas that we established before the script tab
+          drawPies(dataSet1, 300, 150, cx); //passing dataSet1 into the drawPies function and setting its center to be (300, 150) which gives it enough space to render the text and sections on the canvas
+          cx.font = "25px sans-serif", cx.fillStyle = "black", cx.textAlign = "left"; //formatting text similarly to the section labels except larger font size
+          cx.fillText("Tribago's Religions", 300, 290); //writes "Data Set 1" label below the pie chart
+        </script>
+        <br><br>
+        <ul>
+          <li>Major Events in Tribago</li><br>
+          <ul>
+            <li>(⬇ info from source 3) 1884 “Peace Preservation” ordinance was passed by the governor which prohibited the use of any noisy instruments. This forced the citizens to get creative in order to continue playing music for Carnival. This was the spark that led to the invention of multiple instruments:</li>
+            <ul>
+              <li>Tamboo Bamboo (hollow tubes cut to different notes)</li>
+              <li>Kalenda drums which were accompanied by stick fighting</li>
+              <li>People started beating on trash bins in the streets as a form of percussion since drums were still banned. </li>
+            </ul>
+            <li>When was it discovered that dents produced different sounds in metal bins? There are many versions of the story, but several attribute it to Winston “Spree” Simon in the 40s</li>
+            <li>Spree performed on his 14-note convex steel pan, nicknamed “ping pong”,  in the 1946 Carnival. Playing Schubert's Ave Maria and other songs, Spree introduced the world to the musical abilities of this new instrument (source 4)</li>
+            <li>In the same year (1946), Ellie Mannette was the first to make a 55 gallon concave steel pan (source 5), and that is how all are made today because it. </li>
+            <ul>
+              <li>Ellie was sent to England by the Tribago gov’t to show off this new instrument. There, he learned music theory on chromatics and harmonics. When he came back to Tribago in 1952, he used this knowledge to design and tune up a steel pan drum with all the notes of the western chromatic scales (more details in the technicalities section)</li>
+            </ul>
+          </ul>
+        </ul>
+        
       </div>
+
       <div class="Rpanel">
-        •	Major Events in Tribago
-o	(⬇ info from source 3) 1884 “Peace Preservation” ordinance was passed by the governor which prohibited the use of any noisy instruments. This forced the citizens to get creative in order to continue playing music for Carnival. This was the spark that led to the invention of multiple instruments:
-	Tamboo Bamboo (hollow tubes cut to different notes)
-	Kalenda drums which were accompanied by stick fighting
-	People started beating on trash bins in the streets as a form of percussion since drums were still banned. 
-o	When was it discovered that dents produced different sounds in metal bins? There are many versions of the story, but several attribute it to Winston “Spree” Simon in the 40s
-o	Spree performed on his 14-note convex 
+        <h2>	Uganda
+          <img style="vertical-align:text-top; padding-left: 40px;" src="../uganda.png" width="54%"></h2><br>
+        o	Demographics: <br><br>
+
+        	Uganda is a melting pot of different ethnic groups, with Baganda being the largest demographic (source 1)<br>
+        	Majority is Christian religion (source 1)<br>
+        
+        <canvas id="pie2" width="600" height="300"></canvas> <!-- canvas is this size to fit both pie charts -->
+        <script>
+          cx = document.getElementById("pie2").getContext("2d"); //setting cx to be the canvas that we established before the script tab
+          drawPies(dataSet2, 300, 150, cx); //passing dataSet1 into the drawPies function and setting its center to be (300, 150) which gives it enough space to render the text and sections on the canvas
+          cx.font = "25px sans-serif", cx.fillStyle = "black", cx.textAlign = "left"; //formatting text similarly to the section labels except larger font size
+          cx.fillText("Uganda's Religions", 300, 290); //writes "Data Set 1" label below the pie chart
+        </script>
+        <br><br>
+        <ul style="list-style-position: none;">
+          <li>Traditional Culture of Uganda</li><br>
+          <ul>
+            <li>(Source 6)  Dr. Kyakuwa explains how traditional music and culture was during his childhood in central Uganda:</li>
+            <ul>
+              <li>music was used in a functional perspective </li>
+                <ul>
+                <li>music for a child to start to walk</li>
+                <li>when they get their first tooth</li>
+                <li>when they begin to crawl</li>
+                <li>when you begin to play with others</li>
+                <li>songs for hunting</li>
+                <li>songs for lumber jacks</li>
+                <li>songs for fisherman</li>
+                <li>songs for dancing</li>
+                <li>songs for weddings</li>
+              </ul>
+              <li>Music playing was always a community endeavor. Never a single musician performing for an audience; the audience always participated by either dancing, chanting, singing along, or playing the instruments with them.</li>
+            </ul>
+        </ul>
+        
       </div>
+
     </div>
   </body>
 </html>
