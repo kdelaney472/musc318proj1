@@ -23,35 +23,83 @@
     <div class="navbar" id="myNavbar">
         <a href="./history.html">History</a>
         <a href="./tech.html">Technicalities</a>
-        <a href="./impact.html"><u>Impact</u></a>
+        <a class="nbSel" href="./impact.html">Impact</a>
       <a class="sources" href="./sources.html">Sources</a>
     
     </div>
 	
     <div id="content">
       <div class="Lpanel">
-        <h2>Tribago's steel pan evolutions and influence</h2>
-        <ul>
-          <li>the steelpan has all notes in the western chromatic scales on it, so it allows anyone familiar with music of these scales to transpose their favorite songs onto this instrument. This makes it very popular among the globalized instruments because it has a unique sound that can play almost any song. </li>
-          <li>used in The Little Mermaid soundtrack</li>
-          <li>used in Star wars the last jedi ost (source 12) </li>
-          <li>handpan is a newer, more portable evolution of the Ellie Mannette's steelpan (source 13)</li>
+        <h2>Tribago's steelpan evolutions and influence</h2>
+
+        <tab-panel> 
+          <div data-tabname="Steelpan">
             <ul>
-              <li>made in 2000 in switzerland (very new instrument relatively)</li>
-              <li>comes in a range of sizes, styles, and finishes</li>
+              <li>the steelpan has all notes in the western chromatic scales on it, so it allows anyone familiar with music of these scales to transpose their favorite songs onto this instrument. This makes it very popular among the globalized instruments because it has a unique sound that can play almost any song. </li>
+              <ul>
+                <li>used in The Little Mermaid soundtrack</li>
+                <li>used in Star wars the last jedi ost (source 12) </li>
+              </ul>              
             </ul>
-          <li>handpan has been featured in many songs from different genres (list examples)</li>
+          </div> 
+          <div data-tabname="Handpan">
             <ul>
-              <li>including game soundtracks (describe aria math from minecraft ost)</li>
+              <li>handpan is a newer, more portable evolution of the Ellie Mannette's steelpan (source 13)</li>
+                <ul>
+                  <li>made in 2000 in switzerland (very new instrument relatively)</li>
+                  <li>comes in a range of sizes, styles, and finishes</li>
+                </ul>
+              <li>handpan has been featured in many songs from different genres (list examples)</li>
+                <ul>
+                  <li>including game soundtracks (describe aria math from minecraft ost)</li>
+                </ul>
             </ul>
-          <li>steel tongue drum is the newest, most portable and most durable evolution of the steelpan</li>
+          </div> 
+          <div data-tabname="Steel Tongue Drum">
             <ul>
-              <li>comparing handpan sound to steel tongue drum (source 14) </li>
-              <li>first iteration was made out of a steel water tank in 1990 by Jim Doble, nicknamed the "whale drum" for its large profile</li>
-              <li>in 2007, the first steel tongue drum as we know them today was made by Dennis Havlena</li>
-              <li>featured in the soundtrack to the video game Trailmakers</li>
+              <li>steel tongue drum is the newest, most portable and most durable evolution of the steelpan</li>
+                <ul>
+                  <li>comparing handpan sound to steel tongue drum (source 14) </li>
+                  <li>first iteration was made out of a steel water tank in 1990 by Jim Doble, nicknamed the "whale drum" for its large profile</li>
+                  <li>in 2007, the first steel tongue drum as we know them today was made by Dennis Havlena</li>
+                  <li>featured in the soundtrack to the video game Trailmakers</li>
+                </ul>
             </ul>
-        </ul>
+          </div> 
+        </tab-panel> 
+        <script>
+          function asTabs(node) //asTabs implements the tab functionality 
+          { 
+          let tabs = Array.from(node.children).map(node => 
+          { //we're assigning the array of tabs to a single binding 
+            let button = document.createElement("button"); //assigning a button binding 
+            button.textContent = node.getAttribute("data-tabname"); //setting the text of each button to the name of the tab from tab-panel
+            let tab = {node, button}; //node is tab-panel, because that's what we pass in at the bottom of the script to asTabs, so we're setting tab to the button on that tab
+            button.addEventListener("click", () => selectTab(tab)); //this line allows the button to function, so when we click it, it selects the clicked tab button
+            return tab; //return tab to the let tabs binding above
+          });
+    
+          let tabList = document.createElement("div"); //we create a tablist element 
+          for (let {button} of tabs)  //fill the tablist with the tabs from tab-panel that we set buttons to in the tabs assignment function above
+          {
+            tabList.appendChild(button); //we're appending the button from the tabs array to the tabList div element
+          }
+          node.insertBefore(tabList, node.firstChild); //here, we insert the tabList before the first child of the node
+    
+          function selectTab(selectedTab) //this function is used to select the tab and highlight the selected one red
+          {
+            for (let tab of tabs)  //iterates through all tabs
+            {
+            let selected = tab == selectedTab; //selected is the boolean of whether the iterated tab is the selected tab
+            tab.node.style.display = selected ? "" : "none"; //if the iterated tab is the selected one (selected =true), then the display will be empty, otherwise it's 'none'
+            tab.button.style.color = selected ? "blue" : ""; //if the tab button is the selected, then it will be blue
+            }
+          }
+          selectTab(tabs[0]); //passing in the first tab to the selectTab function
+          }
+    
+          asTabs(document.querySelector("tab-panel")); //pass in the tab-panel node to asTabs function to format them
+        </script>
       </div>
 
       <div class="Rpanel">
