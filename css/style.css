@@ -168,12 +168,18 @@ button:hover{
   padding:0;
 }
 #notefs4{
-  left:275px;
+  left:265px;
   top:25px;
+  width:70px;
+  border-radius: 20px 20px 50px 55px;
 }
-#notef4{
-  left:160px;
-  top:345px;
+#notefs4ov{
+  width:100px;
+  height:80px;
+  left:252px;
+  top:15px;
+  background-color:rgba(255, 0, 0, 0.1);
+  border-radius: 10px 20px 50px 55px;
 }
 
 
