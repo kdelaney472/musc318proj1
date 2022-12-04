@@ -46,8 +46,8 @@
                   var audio = new Audio("../steelpan pitch fs4.mp3");
                   var audio2 = new Audio("../steelpan pitch fs6.mp3");
                 </script>
-                <button class="bignotes" id="notefs4ov" onclick="audio2.play()"></button>
-                <button class="bignotes" id="notefs4" onclick="audio.play()"></button>
+                <button class="bignotes" id="notefs4ov" onclick="audio2.cloneNode(true).play()"></button>
+                <button class="bignotes" id="notefs4" onclick="audio.cloneNode(true).play()"></button>
               </div>
             </li>
           </ul>
