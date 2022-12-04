@@ -42,14 +42,11 @@
             <li>
               <div id="tenorpan">
                 <img src="../tenorpan.jpg" width="100%"> 
-                <audio id="id1" src="../steelpan pitch f#4.mp3"></audio>
-                <button id="notefs4" onclick="play()"></button>
-                <script>
-                  function play(){
-                    document.getElementById("id1").play();
-                  }
+                <script> 
+                  var audio = new Audio("../steelpan pitch fs4.mp3");
                 </script>
-                <!-- <button id="notefs4" onclick=""></button> -->
+                <button class="bignotes" id="notefs4" onclick="audio.play()"></button>
+                <button class="bignotes" id="notef4" ></button>
               </div>
             </li>
           </ul>
