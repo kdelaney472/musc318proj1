@@ -8,6 +8,7 @@
     <title>MUSC 318 Project 1</title>
 
     <link rel="stylesheet" href="../css/style.css" />
+    <!-- <script src="../scripts/notes.js"></script> -->
 
   <body>
     <div class="title">
@@ -38,7 +39,17 @@
           <li>they also have the fifth of each note in between fundamental notes</li>
           <li>tenor pan is fully chromatic because any note in any scale can be played, see image below</li>
           <ul>
-            <li><img src="../tenorpan.jpg" width="100%"> </li>
+            <li>
+              <div id="tenorpan">
+                <img src="../tenorpan.jpg" width="100%"> 
+                <script> 
+                  var audio = new Audio("../steelpan pitch fs4.mp3");
+                  var audio2 = new Audio("../steelpan pitch fs6.mp3");
+                </script>
+                <button class="bignotes" id="notefs4ov" onclick="audio2.play()"></button>
+                <button class="bignotes" id="notefs4" onclick="audio.play()"></button>
+              </div>
+            </li>
           </ul>
           <li>double tenor has lower notes available but it needs two pans to have the same number of notes as the tenor pan</li>
           <ul>
