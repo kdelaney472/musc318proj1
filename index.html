@@ -9,6 +9,20 @@
 
     <link rel="stylesheet" href="./css/style.css" />
 
+    <script>
+      var index = 0;
+      function changeBanner() {
+          [].forEach.call(document.images, function(v, i) {
+              document.images[i].hidden = i !== index
+          });
+          index = (index + 1) % document.images.length;
+      }
+      window.onload = function() {
+          changeBanner();
+          setInterval(changeBanner, 4500)
+      };
+    </script>
+
   <body>
     <div class="title">
       <a href="./index.html">
@@ -29,12 +43,23 @@
 
 
     <div id="content">
-      <p id="intro">This website compares and contrasts the percussion styles from Trinidad & Tobago <i style="font-size:smaller;">(further referred to as <span style="font-size:larger;">Tribago </span>for simplicity)</i> to that of Uganda. I chose these two styles to compare and contrast because of their distinctly different entry-level skill requirements for their instruments, and they both have modern evolutions of some of their instruments, so they have a good balance of differences and similarities. 
-      </p>
-      <center>
-        <span style="font-size:smaller;font-weight:600;">Click <a href="html/history.html">History</a> to continue.</span>
-      </center>
+      <div class="Lpanel" style="padding:0px 0px 0px 30px; background-color:transparent;box-shadow: none; ">
+        <img src="./steelpan.jfif" width="auto" height="355px"  style="float:right;">
+        <img src="./bakisimba drums.png" width="auto" height="355px"  style="float:right;">
+        <img src="./tribago-map.png" width="auto" height="355px"  style="float:right;">
+        <img src="./uganda.png" width="auto" height="355px"  style="float:right;">
+        <img src="./iron.png" width="auto" height="355px"  style="float:right;">
+        <img src="./handpan.jpg" width="auto" height="355px"  style="float:right;">
 
+
+      </div>
+      <div class="Rpanel" style="padding:20px;">
+      <p style="font-size:smaller;padding:0;margin:0;">This website compares and contrasts the percussion styles from Trinidad & Tobago <i style="font-size:smaller;">(further referred to as <span style="font-size:larger;">Tribago </span>for simplicity)</i> to that of Uganda. <br><br>I chose these two styles to compare and contrast because of their distinctly different entry-level skill requirements for their instruments, and they both have modern evolutions of some of their instruments, so they have a good balance of differences and similarities. 
+      </p>
+      <br><br>
+      <span style="font-size:smaller;font-weight:600; font-family: Arial, Helvetica, sans-serif;">Click <a href="html/history.html">History</a> to continue.</span>
+      
+      </div>
     </div>
   </body>
 </html>
